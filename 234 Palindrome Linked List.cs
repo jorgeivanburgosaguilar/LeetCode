@@ -19,39 +19,39 @@ using System.Text;
  */
 public class Solution
 {
-    public static string Reverse(string s)
+  public static string Reverse(string s)
+  {
+    if (s.Length < 2)
+      return s;
+
+    char[] charArray = s.ToCharArray();
+    Array.Reverse(charArray);
+    return new string(charArray);
+  }
+
+  public static string ListNodeToString(ListNode node)
+  {
+    if (node.next == null)
     {
-		if (s.Length < 2)
-			return s;
-		
-        char[] charArray = s.ToCharArray();
-        Array.Reverse(charArray);
-        return new string(charArray);
+      return node.val.ToString();
     }
-    
-    public static string ListNodeToString(ListNode node)
+
+    var strListNode = new StringBuilder();
+
+    var currentNode = node;
+    while (currentNode != null)
     {
-        if (node.next == null)
-        {
-            return node.val.ToString();
-        }
-        
-        var strListNode = new StringBuilder();
-        
-        var currentNode = node;
-        while (currentNode != null)
-        {
-            strListNode.Append(currentNode.val.ToString());
-            currentNode = currentNode.next;
-        }
-        
-        return strListNode.ToString();
+      strListNode.Append(currentNode.val.ToString());
+      currentNode = currentNode.next;
     }
-    
-    public bool IsPalindrome(ListNode head)
-    {
-        var strListNode = ListNodeToString(head);
-        var reverseStrListNode =  Reverse(strListNode);
-        return strListNode == reverseStrListNode;
-    }
+
+    return strListNode.ToString();
+  }
+
+  public bool IsPalindrome(ListNode head)
+  {
+    var strListNode = ListNodeToString(head);
+    var reverseStrListNode = Reverse(strListNode);
+    return strListNode == reverseStrListNode;
+  }
 }

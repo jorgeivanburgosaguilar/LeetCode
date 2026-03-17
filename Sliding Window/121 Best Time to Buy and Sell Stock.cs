@@ -5,27 +5,27 @@ Memory Usage: 49.5 MB, less than 11.60% of C# online submissions for Best Time t
 */
 public class Solution
 {
-    public int MaxProfit(int[] prices)
+  public int MaxProfit(int[] prices)
+  {
+    var pricesLength = prices.Length;
+    var buy = 0;
+    var sell = 1;
+    var maxProfit = 0;
+
+    while (sell < pricesLength)
     {
-        var pricesLength = prices.Length;
-        var buy = 0;
-        var sell = 1;
-        var maxProfit = 0;
+      var priceBuy = prices[buy];
+      var priceSell = prices[sell];
 
-        while (sell < pricesLength)
-        {
-            var priceBuy = prices[buy];
-            var priceSell = prices[sell];
+      if (priceSell < priceBuy)
+      {
+        buy = sell;
+      }
 
-            if (priceSell < priceBuy )
-            {
-                buy = sell;
-            }
-
-            maxProfit = Math.Max(maxProfit, priceSell - priceBuy);
-            sell++;
-        }
-
-        return maxProfit;
+      maxProfit = Math.Max(maxProfit, priceSell - priceBuy);
+      sell++;
     }
+
+    return maxProfit;
+  }
 }

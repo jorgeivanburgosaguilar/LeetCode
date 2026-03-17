@@ -19,30 +19,30 @@ using System.Collections.Generic;
  */
 public class Solution
 {
-    public static List<ListNode> ListNodeToGenericList(ListNode node)
+  public static List<ListNode> ListNodeToGenericList(ListNode node)
+  {
+    var listListNode = new List<ListNode>();
+    var currentNode = node;
+
+    while (currentNode != null)
     {
-        var listListNode = new List<ListNode>();
-        var currentNode = node;
-        
-        while (currentNode != null)
-        {
-            listListNode.Add(currentNode);
-            currentNode = currentNode.next;
-        }
-        
-        return listListNode;
+      listListNode.Add(currentNode);
+      currentNode = currentNode.next;
     }
-    
-    public ListNode MiddleNode(ListNode head)
-    {
-        if (head.next == null)
-            return head;
-        
-        if (head.next.next == null)
-            return head.next;
-        
-        var listListNode = ListNodeToGenericList(head);
-        var middleIndex = Math.Abs(listListNode.Count / 2);
-        return listListNode[middleIndex];
-    }
+
+    return listListNode;
+  }
+
+  public ListNode MiddleNode(ListNode head)
+  {
+    if (head.next == null)
+      return head;
+
+    if (head.next.next == null)
+      return head.next;
+
+    var listListNode = ListNodeToGenericList(head);
+    var middleIndex = Math.Abs(listListNode.Count / 2);
+    return listListNode[middleIndex];
+  }
 }

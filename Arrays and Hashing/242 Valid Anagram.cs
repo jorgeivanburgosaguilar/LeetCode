@@ -8,24 +8,24 @@ using System.Linq;
 
 public class Solution
 {
-    public bool IsAnagram(string s, string t)
+  public bool IsAnagram(string s, string t)
+  {
+    if (s.Length != t.Length)
+      return false;
+
+    var listT = t.ToList();
+    for (var i = 0; i < s.Length; i++)
     {
-        if (s.Length != t.Length)
-            return false;
-            
-        var listT = t.ToList();
-        for (var i = 0; i < s.Length; i++)
+      for (var j = 0; j < listT.Count; j++)
+      {
+        if (s[i] == listT[j])
         {
-            for (var j = 0; j < listT.Count; j++)
-            {
-                if (s[i] == listT[j])
-                {
-                    listT.RemoveAt(j);
-                    break;
-                }
-            }
+          listT.RemoveAt(j);
+          break;
         }
-        
-        return listT.Count == 0;
+      }
     }
+
+    return listT.Count == 0;
+  }
 }

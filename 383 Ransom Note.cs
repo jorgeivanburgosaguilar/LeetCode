@@ -8,21 +8,21 @@ using System.Linq;
 
 public class Solution
 {
-    public bool CanConstruct(string ransomNote, string magazine)
+  public bool CanConstruct(string ransomNote, string magazine)
+  {
+    var listaRansomNote = ransomNote.ToList();
+    for (var i = 0; i < magazine.Length; i++)
     {
-        var listaRansomNote = ransomNote.ToList();
-        for (var i = 0; i < magazine.Length; i++)
+      for (var j = 0; j < listaRansomNote.Count; j++)
+      {
+        if (magazine[i] == listaRansomNote[j])
         {
-            for (var j = 0; j < listaRansomNote.Count; j++)
-            {
-                if (magazine[i] == listaRansomNote[j])
-                {
-                    listaRansomNote.RemoveAt(j);
-                    break;
-                }
-            }
+          listaRansomNote.RemoveAt(j);
+          break;
         }
-        
-        return listaRansomNote.Count == 0;
+      }
     }
+
+    return listaRansomNote.Count == 0;
+  }
 }

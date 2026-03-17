@@ -5,35 +5,37 @@ Memory Usage: 43.9 MB, less than 97.69% of C# online submissions for Longest Con
 */
 public class Solution
 {
-    public int LongestConsecutive(int[] nums)
+  public int LongestConsecutive(int[] nums)
+  {
+    var numsLength = nums.Length;
+    if (numsLength < 1)
+      return 0;
+
+    Array.Sort(nums);
+    var maxLongestSequence = 1;
+    var latestLongestSequence = 1;
+
+    for (var i = 1; i < numsLength; i++)
     {
-        var numsLength = nums.Length;   
-        if (numsLength < 1)
-            return 0;
-            
-        Array.Sort(nums);
-        var maxLongestSequence = 1;
-        var latestLongestSequence = 1;
-        
-        for (var i = 1; i < numsLength; i++)
-        {
-            if (nums[i - 1] == nums[i])
-            {
-                continue;
-            }
-            else if (nums[i - 1] == nums[i] - 1)
-            {
-                latestLongestSequence++;
-            }
-            else
-            {
-                maxLongestSequence = maxLongestSequence < latestLongestSequence ? latestLongestSequence : maxLongestSequence;
-                latestLongestSequence = 1;
-            }
-        }
-        
-        maxLongestSequence = maxLongestSequence < latestLongestSequence ? latestLongestSequence : maxLongestSequence;
-        
-        return maxLongestSequence;
+      if (nums[i - 1] == nums[i])
+      {
+        continue;
+      }
+      else if (nums[i - 1] == nums[i] - 1)
+      {
+        latestLongestSequence++;
+      }
+      else
+      {
+        maxLongestSequence =
+          maxLongestSequence < latestLongestSequence ? latestLongestSequence : maxLongestSequence;
+        latestLongestSequence = 1;
+      }
     }
+
+    maxLongestSequence =
+      maxLongestSequence < latestLongestSequence ? latestLongestSequence : maxLongestSequence;
+
+    return maxLongestSequence;
+  }
 }

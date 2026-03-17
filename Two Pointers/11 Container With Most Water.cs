@@ -5,28 +5,31 @@ Memory Usage: 50.3 MB, less than 15.18% of C# online submissions for Container W
 */
 public class Solution
 {
-    public int MaxArea(int[] height)
+  public int MaxArea(int[] height)
+  {
+    var indexAdd = 0;
+    var indexSubstract = height.Length - 1;
+
+    var maxArea = 0;
+    while (indexAdd < indexSubstract)
     {
-        var indexAdd = 0;
-        var indexSubstract = height.Length - 1;
+      var heightIndexAdd = height[indexAdd];
+      var heightIndexSubstract = height[indexSubstract];
 
-        var maxArea = 0;
-        while (indexAdd < indexSubstract)
-        {
-            var heightIndexAdd = height[indexAdd];
-            var heightIndexSubstract = height[indexSubstract];
-
-            maxArea = Math.Max((indexSubstract - indexAdd) * Math.Min(heightIndexAdd, heightIndexSubstract), maxArea);
-            if (heightIndexAdd > heightIndexSubstract)
-            {
-                indexSubstract--;
-            }
-            else
-            {
-                indexAdd++;
-            }
-        }
-
-        return maxArea;
+      maxArea = Math.Max(
+        (indexSubstract - indexAdd) * Math.Min(heightIndexAdd, heightIndexSubstract),
+        maxArea
+      );
+      if (heightIndexAdd > heightIndexSubstract)
+      {
+        indexSubstract--;
+      }
+      else
+      {
+        indexAdd++;
+      }
     }
+
+    return maxArea;
+  }
 }
